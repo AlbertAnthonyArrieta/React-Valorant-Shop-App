@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+import Store from './components/Store';
+import Cart from './components/Cart';
+
 function App() {
 
-  const [darkMode, setDarkMode] = useState(false);
+  const [page, setPage] = useState(true)
 
   return (
     <div className="App">
-      <header 
-      className="App-header" 
-      style={darkMode ? {backgroundColor: '#ebedf0'} :
-       {backgroundColor: '#18191a'}}>
-        <h1 className={darkMode ? 'text-dark' : 'text-light'}>Hello World!</h1>
-        <button 
-        className={darkMode ? 'btn btn-dark' : 'btn btn-light'}
-        onClick={() => setDarkMode(!darkMode)}
-        >Dark mode!</button>
+      <header className="jumbotron bg-info">
+        <h1 className="text-light">{page ? 'STORE' : 'CART'}</h1>
+        <br></br>
+        <button
+          className="btn btn-light"
+          onClick={() => setPage(!page)}
+        >
+          {page ? "Checkout" : "Back to Store"}
+        </button>
       </header>
+
+
+
+      {page ? <Store /> : <Cart />}
+
+
+
     </div>
   );
 }
