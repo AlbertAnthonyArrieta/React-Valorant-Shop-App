@@ -11,7 +11,7 @@ import Spectre from "./images/Spectre.jpg"
 import Operator from "./images/Operator.jpg"
 import Odin from "./images/Odin.jpg"
 
-function App() {  
+function App() {
 
   const [page, setPage] = useState(true)
   const [total, setTotal] = useState(0)
@@ -62,19 +62,28 @@ function App() {
   ])
 
   const removeItem = (id) => {
-    setStorage(storage.map((item) => 
-    item.id === id ? {
-      ...item, cart: false} : item
+    setStorage(storage.map((item) =>
+      item.id === id ? {
+        ...item, cart: false
+      } : item
     ))
   }
 
-
   const transferToCart = (id) => {
-    setStorage(storage.map((item) => 
-    item.id === id ? {
-      ...item, cart: true} : item
+    setStorage(storage.map((item) =>
+      item.id === id ? {
+        ...item, cart: true
+      } : item
     ))
-    }
+  }
+
+  const sendOrder = () => {
+    setStorage(storage.filter((it) => {
+      return it.cart === false;
+  }))
+
+  alert('ORDER SENT')
+  }
 
   return (
     <div className="App">
@@ -87,18 +96,21 @@ function App() {
         >
           {page ? "Checkout" : "Back to Store"}
         </button>
-        <br/>
-        <br/>
-        <p className='text-light'>This is just a small mock online store I created while learning React.
-          THESE ARE NOT MY GUNS! These guns are from the popular tactical fps shooter 
-          videogame called VALORANT.
-        </p>
+        <br />
+        <br />
       </div>
 
 
 
-      {page ? <Store addToCart={transferToCart} items={storage}/> : <Cart removeItem={removeItem} items={storage}/>}
+      {page ? <Store addToCart={transferToCart} items={storage} /> : <Cart removeItem={removeItem} items={storage} purchase={sendOrder} />}
 
+
+    <footer className='footer mt-5'>
+      <small><p className='text-dark'>This is just a small mock online store I created while learning React.
+          THESE ARE NOT MY GUNS! These guns are from the popular tactical fps shooter
+          videogame called VALORANT.
+        </p></small>
+    </footer>
 
 
     </div>

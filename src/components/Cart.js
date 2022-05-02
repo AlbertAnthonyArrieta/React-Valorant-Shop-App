@@ -1,9 +1,8 @@
 import CartItem from './CartItem';
 import { useState } from 'react';
 
-const Cart = ({removeItem, items}) => {
+const Cart = ({removeItem, items, purchase}) => {
 const total = items.filter(it => it.cart === true).reduce((a, o) => a + o.price, 0)
-
 
     return (
         <div className="container">
@@ -21,7 +20,10 @@ const total = items.filter(it => it.cart === true).reduce((a, o) => a + o.price,
 
         <h3>Your Total: ${total}</h3>
 
-        <button className='btn btn-success'>Confirm Purchase</button>
+        <button 
+        className='btn btn-success'
+        onClick={purchase}
+        >Confirm Purchase</button>
 
         
     </div>
