@@ -36,9 +36,17 @@ function App() {
 
   ])
 
+  const removeItem = (id) => {
+    console.log(id)
+  }
 
-  const transferToCart = () => {
 
+  const transferToCart = (id) => {
+    console.log(id)
+    setStorage(storage.map((item) => 
+    item.id === id ? {
+      ...item, cart: true} : item
+    ))
   }
 
   return (
@@ -56,7 +64,7 @@ function App() {
 
 
 
-      {page ? <Store addToCart={transferToCart} items={storage}/> : <Cart />}
+      {page ? <Store addToCart={transferToCart} items={storage}/> : <Cart removeFromCart={removeItem} items={storage}/>}
 
 
 

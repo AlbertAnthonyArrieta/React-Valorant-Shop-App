@@ -13,12 +13,11 @@ const Store = ({ addToCart, items }) => {
             <br/>
             
             <div className="card-deck">
-                {items.map((item) => (
+                {items.filter(it => it.cart === false).map((item) => (
                 <Item 
-                name={item.name} 
-                picture={item.picture} 
-                price={item.price} 
-                addToCart={addToCart} />
+                item={item}
+                addToCart={addToCart}
+                />
                 ))}
             </div>
         </div>
