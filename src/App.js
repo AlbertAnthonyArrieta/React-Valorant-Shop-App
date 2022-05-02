@@ -4,17 +4,50 @@ import { useState } from 'react';
 import Store from './components/Store';
 import Cart from './components/Cart';
 
-function App() {
+import Phantom from "./images/Phantom.jpg"
+import Vandal from "./images/Vandal.jpg"
+import Classic from "./images/Classic.jpg"
+
+function App() {  
 
   const [page, setPage] = useState(true)
+  const [storage, setStorage] = useState([
+    {
+      id: 1,
+      name: "Classic",
+      picture: Classic,
+      price: "$0",
+      cart: false
+    },
+    {
+      id: 2,
+      name: "Phantom",
+      picture: Phantom,
+      price: "$0",
+      cart: false
+    },
+    {
+      id: 3,
+      name: "Vandal",
+      picture: Vandal,
+      price: "$0",
+      cart: false
+    },
+
+  ])
+
+
+  const transferToCart = () => {
+
+  }
 
   return (
     <div className="App">
-      <header className="jumbotron bg-info">
+      <header className="jumbotron bg-dark">
         <h1 className="text-light">{page ? 'STORE' : 'CART'}</h1>
         <br></br>
         <button
-          className="btn btn-light"
+          className="btn btn-outline-light"
           onClick={() => setPage(!page)}
         >
           {page ? "Checkout" : "Back to Store"}
@@ -23,7 +56,7 @@ function App() {
 
 
 
-      {page ? <Store /> : <Cart />}
+      {page ? <Store addToCart={transferToCart} items={storage}/> : <Cart />}
 
 
 
