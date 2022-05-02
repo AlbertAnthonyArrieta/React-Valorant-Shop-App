@@ -12,7 +12,7 @@ const Store = ({ addToCart, items }) => {
             <br/>
             <br/>
             
-            <div className="card-deck">
+            <div className="card-columns">
                 {items.filter(it => it.cart === false).map((item) => (
                 <Item 
                 item={item}
